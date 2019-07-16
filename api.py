@@ -7,22 +7,29 @@ api = Api(app)
 
 
 class GetData(Resource):
-    def get(self, _id):
-        r = redis.Redis(host='localhost', port=7001, db=0)
-        value = r.hgetall(_id)
-        return value
+    def get(self, key):
+        try:
+            r = redis.Redis(host='localhost', port=7001, db=0)
+            value = r.get(key)
+            return value
+        except Exception as e:
+            return "500"
 
 
 class PutData(Resource):
     def put(self):
-        content = request.get_json()
-        r = redis.Redis(host='localhost', port=7001, db=0)
-        r.hmset("test", content)
+        try:
+            content = request.get_json()
+            key = content['key']
+            value = content['value']
+            r = redis.Redis(host='localhost', port=7001, db=0)
+            r.set(key, value)
+            return content
+        except Exception as e:
+            return "500"
 
-        return content
 
-
-api.add_resource(GetData, '/key/<string:_id>')
+api.add_resource(GetData, '/key/<string:key>')
 api.add_resource(PutData, '/key')
 
 if __name__ == '__main__':
