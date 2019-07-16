@@ -4,14 +4,21 @@
 
 This project is a RETful web app using Flask and Redis.
 
-## Compose project
+## Compose project locally
 
 To run the services use the following command:
 ```
 docker-compose up -d
 ```
+## Deploy to AWS
+```
+cd terraform
+terraform init
+terraform apply
+```
+You will need to provide your AWS access and private key along with your public ssh key.
 
-## Example usage
+### Example usage
 
 Upload data using the following example:
 ```
