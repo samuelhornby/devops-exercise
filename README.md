@@ -8,7 +8,7 @@ This project is a RETful web app using Flask and Redis.
 
 To run the services use the following command:
 ```
-docker-compose up
+docker-compose up -d
 ```
 
 ## Example usage

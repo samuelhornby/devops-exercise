@@ -12,7 +12,7 @@ class GetData(Resource):
     """
     def get(self, key):
         try:
-            r = redis.Redis(host='172.19.0.2', port=6379, db=0)
+            r = redis.Redis(host='devops-exercise_database_1', port=6379, db=0)
             value = r.get(key).decode("utf-8")
             output = {"key": key, "value": value}
             if key is not None and value is not None:  # Confirm data exists on Redis
@@ -33,7 +33,7 @@ class PutData(Resource):
             key = content['key']
             value = content['value']
             if key is not None and value is not None:  # Confirm data is valid
-                r = redis.Redis(host='172.19.0.2', port=6379, db=0)
+                r = redis.Redis(host='devops-exercise_database_1', port=6379, db=0)
                 r.set(key, value)  # Store data on Redis
                 return "OK 202"
         except Exception as e:
