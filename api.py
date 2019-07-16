@@ -7,13 +7,16 @@ api = Api(app)
 
 
 class GetData(Resource):
+    """
+    Handles get requests
+    """
     def get(self, key):
         try:
             r = redis.Redis(host='172.19.0.2', port=6379, db=0)
             value = r.get(key).decode("utf-8")
             output = {"key": key, "value": value}
-            if key is not None and value is not None:
-                return output
+            if key is not None and value is not None:  # Confirm data exists on Redis
+                return output, "202"
             else:
                 return "404"
         except Exception as e:
@@ -21,15 +24,18 @@ class GetData(Resource):
 
 
 class PutData(Resource):
+    """
+    Handles put requests
+    """
     def put(self):
         try:
-            content = request.get_json()
+            content = request.get_json()  # read data from http request
             key = content['key']
             value = content['value']
-            if key is not None and value is not None:
+            if key is not None and value is not None:  # Confirm data is valid
                 r = redis.Redis(host='172.19.0.2', port=6379, db=0)
-                r.set(key, value)
-                return "202"
+                r.set(key, value)  # Store data on Redis
+                return "OK 202"
         except Exception as e:
             return "500"
 
