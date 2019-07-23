@@ -1,4 +1,4 @@
-# DevOps exercise for n3
+# Simple DevOps example
 
 ## Description
 
