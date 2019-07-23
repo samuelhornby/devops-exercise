@@ -2,7 +2,7 @@
 
 ## Description
 
-This project is a RETful web app using Flask and Redis.
+This project is a simple RETful web app using Flask and Redis. The main point of this project is to display devops skills. The project can be composed locally using docker-compose or deployed to AWS EC2 or AWS ECS using Terraform. 
 
 ## Compose project locally
 
@@ -11,8 +11,11 @@ To run the services use the following command:
 docker-compose up --detach --no-recreate
 ```
 ## Deploy to AWS
+This project can be deployed to either EC2 or ECS
+
 ```
 cd terraform
+cd ecX  # where X = 2 or S
 terraform init
 terraform apply
 ```
