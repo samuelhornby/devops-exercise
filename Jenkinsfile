@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent sam_dev
 
     stages {
         stage('Build') {
@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                echo 'running tests..'
             }
         }
         stage('Deploy') {
