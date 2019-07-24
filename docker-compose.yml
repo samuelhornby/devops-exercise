@@ -3,7 +3,7 @@ services:
   database:
     build: .
     ports:
-      - "7001:6379"
+      - "6379:6379"
     image: "redis"
     networks:
       - my-network

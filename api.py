@@ -14,11 +14,15 @@ class RedisConnection:
         self.db = 0
 
     def connect(self):
-        try:
+        while True:
+            try:
+                r = redis.Redis(host=self.redis_host, port=self.port, db=self.db)
+            except ConnectionError as e:
+                continue
+            self.redis_host = "devops-exercise_database_1"
             r = redis.Redis(host=self.redis_host, port=self.port, db=self.db)
-            return r
-        except Exception as e:
-            return e
+            break
+        return r
 
 
 class GetData(Resource):
