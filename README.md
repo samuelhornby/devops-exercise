@@ -15,7 +15,7 @@ This project can be deployed to either EC2 or ECS
 
 ```
 cd terraform
-cd ecX  # where X = 2 or S
+cd ecX  # where X = 2 or s
 terraform init
 terraform apply
 ```

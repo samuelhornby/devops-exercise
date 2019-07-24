@@ -1,6 +1,6 @@
 [
   {
-    "name": "redis-store",
+    "name": "devops-exercise_database_1",
     "image": "docker.io/redis:latest",
     "cpu": 256,
     "networkMode": "awsvpc",
@@ -14,7 +14,7 @@
     ]
   },
     {
-    "name": "web-server",
+    "name": "devops-exercise_web_1",
     "image": "docker.io/samuelhornby/n3:latest",
     "cpu": 256,
     "networkMode": "awsvpc",

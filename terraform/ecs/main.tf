@@ -87,7 +87,7 @@ resource "aws_route_table_association" "public-rt" {
 
 # Worker security group
 resource "aws_security_group" "cluster_sg" {
-  name        = "worker_sgroup"
+  name        = "cluster_sg"
   description = "Allow certain inbound and all outbound traffic"
   vpc_id      = aws_vpc.my-deployment.id
 
@@ -106,11 +106,19 @@ resource "aws_security_group" "cluster_sg" {
   }
 
   ingress {
-    # Allow all tcp for Flask web server
+    # Allow tcp for Flask web server on port 5000
     from_port   = 5000
     to_port     = 5000
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+
+    ingress {
+    # Allow tcp for Redis on private subnet
+    from_port   = 6379
+    to_port     = 6379
+    protocol    = "tcp"
+    cidr_blocks = [aws_vpc.my-deployment.cidr_block]
   }
 
   egress {
