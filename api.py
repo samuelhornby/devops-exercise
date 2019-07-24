@@ -35,9 +35,9 @@ class GetData(Resource):
         value = rc.get(key).decode("utf-8")
         output = {"key": key, "value": value}
         if key is not None and value is not None:  # Confirm data exists on Redis
-            return output, "202"
+            return output
         else:
-            return "404"
+            return 404
 
 
 class PutData(Resource):
@@ -52,7 +52,9 @@ class PutData(Resource):
             r = RedisConnection()
             rc = r.connect()
             rc.set(key, value)  # Store data on Redis
-            return "OK 202"
+            return 202
+        else:
+            return 500
 
 
 api.add_resource(GetData, '/key/<string:key>')

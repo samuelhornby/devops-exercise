@@ -4,7 +4,7 @@ services:
     build: .
     ports:
       - "6379:6379"
-    image: "redis"
+    image: "redis:5.0.5"
     networks:
       - my-network
 
