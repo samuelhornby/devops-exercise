@@ -1,5 +1,5 @@
 pipeline {
-    agent sam_dev
+    agent any
 
     stages {
         stage('Build') {
