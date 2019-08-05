@@ -1,0 +1,19 @@
+stages:
+  - build
+  - test
+  - staging
+
+build-tests:
+  stage: build
+  script:
+    - docker pull redis:5.0.5
+    - docker pull samuelhornby/n3:latest
+    - docker-compose up --detach --no-recreate
+    - python3 compose_unit_tests.py
+  only:
+    - master
+  services:
+    - docker:dind
+  tags:
+    - shell
+

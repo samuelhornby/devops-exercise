@@ -1,7 +1,6 @@
 from flask import Flask, request
 from flask_restful import Resource, Api
 import redis
-import socket
 
 app = Flask(__name__)
 api = Api(app)
@@ -9,19 +8,15 @@ api = Api(app)
 
 class RedisConnection:
     def __init__(self):
-        self.redis_host = 'localhost'
+        self.redis_host = 'redis_database_1'
         self.port = 6379
         self.db = 0
 
     def connect(self):
-        while True:
-            try:
-                r = redis.Redis(host=self.redis_host, port=self.port, db=self.db)
-            except ConnectionError as e:
-                continue
-            self.redis_host = "devops-exercise_database_1"
+        try:
             r = redis.Redis(host=self.redis_host, port=self.port, db=self.db)
-            break
+        except ConnectionError as e:
+            print(e)
         return r
 
 

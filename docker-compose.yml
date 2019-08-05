@@ -1,6 +1,7 @@
 version: '3'
 services:
   database:
+    container_name: redis_database_1
     build: .
     ports:
       - "6379:6379"
@@ -9,10 +10,11 @@ services:
       - my-network
 
   web:
+    container_name: api_web_server_1
     build: .
     ports:
       - "5000:5000"
-    image: "samuelhornby/n3"
+    image: "samuelhornby/n3:dc"
     networks:
       - my-network
 

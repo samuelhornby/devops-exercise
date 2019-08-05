@@ -1,6 +1,6 @@
 [
   {
-    "name": "devops-exercise_database_1",
+    "name": "redis_database_1",
     "image": "docker.io/redis:latest",
     "cpu": 256,
     "networkMode": "awsvpc",
@@ -14,8 +14,8 @@
     ]
   },
     {
-    "name": "devops-exercise_web_1",
-    "image": "docker.io/samuelhornby/n3:latest",
+    "name": "api_web_server_1",
+    "image": "docker.io/samuelhornby/n3:ecs",
     "cpu": 256,
     "networkMode": "awsvpc",
     "memory": 512,
